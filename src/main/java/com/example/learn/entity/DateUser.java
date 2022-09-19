@@ -16,8 +16,8 @@ import java.util.Objects;
  */
 
 public class DateUser {
-    // @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") //适用formdata类型接收
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss") //适用formdata类型接收
+    // @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
 
     public Date getBirthday() {

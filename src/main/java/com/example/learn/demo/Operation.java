@@ -2,67 +2,57 @@ package com.example.learn.demo;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 /**
- * @Description:
- * @Author: wcy
- * @CreateDate: 2022/6/8 16:09
+ * Operation
+ *
+ * @author wcy
  */
 public class Operation {
 
-
+    // Fcuntion接口是对接受一个T类型参数,返回R类型的结果的方法的抽象,通过调用apply方法执行内容。
     /*
-        下面这个方法接受一个int类型参数a,返回a+1,符合我上面说的接受一个参数,返回一个值
-        所以呢这个方法就符合Function接口的定义,那要怎么用呢,继续看例子
-    */
+            下面这个方法接受一个int类型参数a,返回a+1,符合我上面说的接受一个参数,返回一个值
+            所以呢这个方法就符合Function接口的定义,那要怎么用呢,继续看例子
+        */
     public static final int addOne(int a) {
         return a + 1;
     }
 
-    public static final int subtractionOne(int a) {
+    public static final int subOne(int a) {
         return a - 1;
     }
 
-    //符合predicate函数
-    public static Boolean judgeEvenNumber(int a) {
-        return a % 2 == 0;
+    /*
+     * 该方法第二个参数接受一个function类型的行为,然后调用apply，对a执行这段行为
+     */
+    public static int oper(int a, Function<Integer, Integer> action) {
+        return action.apply(a);
     }
 
-
-    public static int handleOne(Function<Integer, Integer> function, Integer a) {
-        return function.apply(a);
-    }
-
-    public static Boolean checkEven(Predicate<Integer> predicate, Integer a) {
-        return predicate.test(a);
-    }
-
+    /* 下面调用这个oper方法,将addOne方法作为参数传递 */
     public static void main(String[] args) {
+        // int x = 10;
+        //
+        // int y = oper(x,Operation::addOne);//这里可以换成方法引用的写法 int y = oper(x,Operation::addOne)
+        // System.out.printf("x= %d, y = %d", x, y); // 打印结果 x=1, y=2
+        //
+        // int z = oper(x,Operation::subOne);//这里可以换成方法引用的写法 int y = oper(x,Operation::addOne)
+        // System.out.printf("x= %d, y = %d", x, z); // 打印结果 x=1, y=2
 
-        int i = handleOne(a -> addOne(a), 3);
-        System.out.println("i = " + i);
+        Consumer<String> printString = s -> System.out.println(s);
+        printString.accept("helloWorld!");
+        String xx = "哈哈大笑";
+        oper2(xx,Operation::myPrintln);
 
-//        Boolean aBoolean = checkEven((a) -> judgeEvenNumber(a), 99);
-//        System.out.println("aBoolean = " + aBoolean);
+    }
 
-//        Boolean aBoolean = judgeEvenNumber(4);
-//        System.out.println("aBoolean = " + aBoolean);
-//        int i = handleOne((a) -> addOne(a), 3);
-//        System.out.println("i = " + i);
-//
-//        int i1 = handleOne((a) -> subtractionOne(a), 100);
-//        System.out.println("i1 = " + i1);
-//
-//        Consumer<String> printString = s -> System.out.println(s);
-//        printString.accept("helloWorld!");
-//        //控制台输出 helloWorld!
-//
-//        Supplier<String> getInstance = () -> "HelloWorld!";
-//        System.out.println(getInstance.get());
-        // 控偶值台输出 HelloWorld
+    public static void oper2(String a, Consumer<String> action) {
+        action.accept(a);
+    }
 
+    public static void myPrintln(String x) {
 
+        System.out.println("x的值为: " + x);
     }
 }
