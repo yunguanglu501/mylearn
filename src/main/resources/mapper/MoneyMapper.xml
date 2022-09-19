@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.learn.mapper.MoneyMapper">
+  <resultMap id="BaseResultMap" type="com.example.learn.entity.MoneyDO">
+    <!--@mbg.generated-->
+    <!--@Table t_money-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, money
+  </sql>
+
+  <update id="updateMoney">
+    update t_money set money= money-#{num} where id=1
+    </update>
+</mapper>
