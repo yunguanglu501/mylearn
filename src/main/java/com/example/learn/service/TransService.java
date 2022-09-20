@@ -1,5 +1,7 @@
 package com.example.learn.service;
 
+import com.example.learn.entity.MoneyDO;
+import com.example.learn.entity.ScoreDO;
 import com.example.learn.mapper.MoneyMapper;
 import com.example.learn.mapper.RoomMapper;
 import com.example.learn.mapper.ScoreMapper;
@@ -64,5 +66,29 @@ public class TransService {
         }
         scoreMapper.updateScore(num);
 
+    }
+
+    @Transactional(rollbackFor = Throwable.class)
+    public void save() {
+        save1();
+        save2();
+    }
+
+    private void save2() {
+        try {
+            MoneyDO moneyDO = new MoneyDO();
+            moneyDO.setName("张师傅白师傅李师傅小明师傅嘻嘻哈哈");
+            moneyDO.setMoney(10);
+            moneyMapper.insert(moneyDO);
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+    }
+
+    private void save1() {
+        ScoreDO scoreDO = new ScoreDO();
+        scoreDO.setName("黄晓明黄晓明黄晓明黄晓明黄晓明黄晓明黄晓明黄晓明黄晓明黄晓明");
+        scoreDO.setScore(20);
+        scoreMapper.insert(scoreDO);
     }
 }

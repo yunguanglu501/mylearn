@@ -25,4 +25,10 @@ public class TransController {
         transService.testTrans2(num);
         return "success";
     }
+
+    @PostMapping("testTransSave")
+    public String testTransSave() {
+        transService.save();
+        return "success";
+    }
 }
